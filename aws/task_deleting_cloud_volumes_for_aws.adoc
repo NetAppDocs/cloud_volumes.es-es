@@ -1,0 +1,31 @@
+---
+sidebar: sidebar 
+permalink: aws/task_deleting_cloud_volumes_for_aws.html 
+keywords: Cloud Volumes Service for AWS, delete, unmount 
+summary: Es posible eliminar un volumen de cloud que ya no sea necesario. 
+---
+= Eliminación de un volumen de cloud
+:toc: macro
+:hardbreaks:
+:allow-uri-read: 
+:toc: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+[role="lead"]
+Es posible eliminar un volumen de cloud que ya no sea necesario.
+
+.Pasos
+. Desmonte el volumen de todos los clientes:
++
+** En los clientes Linux, utilice `umount` comando.
+** En clientes Windows, haga clic en *desconectar unidad de red*.
+
+
+. En la página Volumes, especifique los volúmenes que desea eliminar seleccionando las casillas de verificación correspondientes, haga clic en *acciones* y seleccione *Delete volume/s* en la lista desplegable.
+. Escriba, en el cuadro de diálogo de confirmación `delete` Para confirmar que desea eliminar el volumen y, a continuación, haga clic en *Eliminar*.
+

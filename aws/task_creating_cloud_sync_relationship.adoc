@@ -1,0 +1,61 @@
+---
+sidebar: sidebar 
+permalink: aws/task_creating_cloud_sync_relationship.html 
+keywords: Cloud Volumes Service for AWS, Cloud Sync relationships, target, source 
+summary: Una relación de Cloud Sync le permite sincronizar datos en el volumen de cloud o desde él. 
+---
+= Creación de una relación de Cloud Sync
+:toc: macro
+:hardbreaks:
+:allow-uri-read: 
+:toc: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+[role="lead"]
+Una relación de Cloud Sync le permite sincronizar datos en el volumen de cloud o desde él.
+
+.Antes de empezar
+* Debe disponer de un agente de datos de Cloud Sync.
++
+link:task_creating_cloud_sync_data_broker.html["Creación de un agente de datos de Cloud Sync"]
+
+* La dirección IP del agente de datos debe haberse agregado a la política de exportación tanto para los volúmenes de origen como para los volúmenes de destino.
++
+La política de exportación del volumen de destino debe permitir el acceso de escritura al agente de datos.
+
++
+link:task_creating_additional_export_policy_rules.html["Creación de reglas de política de exportación adicionales"]
+
+
+
+.Acerca de esta tarea
+La funcionalidad Cloud Sync integrada con Cloud Volumes Service solo admite NFSv3. Si desea sincronizar entre volúmenes SMB, debe usar el https://cloudsync.netapp.com["Servicio Cloud Sync"^] directamente (cloudsync.netapp.com).
+
+.Pasos
+. Vaya a la página Sync o a la pestaña Sync para un volumen en la página Volumes.
+. Cree una relación de Cloud Sync haciendo clic en *Crear nueva relación*.
+. Realice una de las siguientes acciones:
++
+** Para sincronizar los datos con el volumen, seleccione *usar volumen como destino*.
+** Para sincronizar datos del volumen, seleccione *usar volumen como origen*.
++
+image::diagram_creating_cloud_sync_relationship.png[Creación de una relación de Cloud Sync]
+
+
+
+. En el campo *Host* (sin rellenar), introduzca la dirección IP del servidor NFS al que desea sincronizar o sincronizar.
++
+Después de unos momentos, se descubre automáticamente una lista de las exportaciones disponibles.
+
+. En el campo *Exportar*, seleccione una de las exportaciones disponibles.
+. (Opcional) Active la casilla *Eliminar archivos en destino cuando se eliminen de origen* si desea eliminar los archivos en destino cuando se eliminen de origen.
+. Haga clic en *Crear relación*.
++
+Se muestra el estado de la relación y los campos de progreso de archivo muestran el número de archivos que se copian.
+
+

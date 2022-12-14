@@ -1,0 +1,63 @@
+---
+sidebar: sidebar 
+permalink: aws/reference_whats_new_cloud_volumes_aws.html 
+keywords: 'Cloud Volumes Service for AWS, what"s new, features, enhancements' 
+summary: NetApp actualiza periódicamente Cloud Volumes Service para AWS y le ofrece nuevas funciones y mejoras. 
+---
+= Novedades de Cloud Volumes Service para AWS
+:toc: macro
+:hardbreaks:
+:allow-uri-read: 
+:toc: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+[role="lead"]
+NetApp actualiza periódicamente Cloud Volumes Service para AWS y le ofrece nuevas funciones y mejoras.
+
+
+
+== Febrero de 2021
+
+* Una nueva API de Cloud Volumes (`PerformanceMetrics`) Ahora está disponible para recuperar las estadísticas de rendimiento, incluidas IOPS, ancho de banda y latencia. Para obtener más información, consulte link:reference_cloud_volume_apis.html["API de Cloud Volumes"^].
+
+
+
+
+== Julio de 2020
+
+* Ahora Cloud Volumes Service admite rangos de red privada RFC 1918 más amplios entre /16 y /28. Anteriormente sólo se admiten rangos /28.
+* La función de sincronización ahora se integra directamente con la interfaz de usuario de Cloud Sync para proporcionar una mayor funcionalidad.
+* Los volúmenes se pueden convertir a y desde NSFv3, NFSv4.1 y NFSv3 y NFSv4.1 a través de llamadas API.
+* Los ejemplos de API y las secuencias de comandos Python de ejemplo se han actualizado a la API de v2. link:reference_cloud_volume_apis.html["Consulte las API de Cloud Volumes"].
+* Ahora las ACL están habilitadas para los volúmenes de NFSv4.1.
+* Cloud Volumes Service cuenta ahora con la certificación SOC 2 tipo 1.
+* El Cloud Volumes Service está ahora disponible en Singapur (AP-sureste-1).
+
+
+
+
+== Marzo de 2020
+
+* Cloud Volumes Service ahora admite un tamaño de I/o máximo de 1 MIB para montajes NFSv3 y NFSv4.1. Antes, el tamaño de I/o máximo era 64 KiB. Aumentar el tamaño de I/o puede mejorar el rendimiento de algunas cargas de trabajo. Para aumentar el tamaño de I/o, utilice las opciones de montaje "rsize" y/o "wsize", por ejemplo:
+`mount -o nfsvers=4.1,rsize=1048576,wsize=1048576 172.25.0.4:/vol1 /mnt/cv`
+
+
+
+
+== Febrero de 2020
+
+* Cloud Volumes Service ya está disponible como suscripción con medición (pago por uso) en AWS Marketplace. Consulte el listado de Marketplace para obtener más información en: https://aws.amazon.com/marketplace/pp/B0848MXK74[]Tenga en cuenta que los planes de suscripción mensuales y anuales originales siguen estando disponibles.
+
+
+
+
+== Enero de 2020
+
+* Ahora Cloud Volumes Service es compatible con SMB multicanal, que utiliza varias conexiones de red a la vez para proporcionar un mayor rendimiento. Multicanal está activado de forma predeterminada en clientes Windows, pero requiere que la instancia EC2 utilice un adaptador de red compatible con RSS (escala de recepción).
+* Revertir un volumen de una copia de Snapshot ahora está disponible desde la interfaz de usuario de Cloud Volumes Service. Esto permite revertir los volúmenes a una instantánea específica sin que los clientes tengan que volver a montarse. Consulte link:task_reverting_volume_to_snapshot.html["Revertir un volumen desde una copia de Snapshot"] para obtener más detalles.
+

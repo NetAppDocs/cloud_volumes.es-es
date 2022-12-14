@@ -1,0 +1,55 @@
+---
+sidebar: sidebar 
+permalink: aws/task_mounting_cloud_volumes_for_aws.html 
+keywords: Cloud Volumes Service for AWS, mount targets, Elastic Compute Cloud, EC2, NFSv3, NFSv4.1, Linux, UNIX, SMB, Windows 
+summary: Es posible montar un volumen de cloud en la instancia de AWS. Cloud Volumes es compatible actualmente con NFSv3 y NFSv4.1 para clientes de Linux y UNIX y con SMB 2.1, 3.0 y 3.1.1 para clientes de Windows. 
+---
+= Montaje de un volumen de cloud
+:toc: macro
+:hardbreaks:
+:allow-uri-read: 
+:toc: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+[role="lead"]
+Es posible montar un volumen de cloud en la instancia de AWS. Cloud Volumes es compatible actualmente con NFSv3 y NFSv4.1 para clientes de Linux y UNIX, y con SMB 2.1, 3.0 y 3.1.1 para clientes de Windows.
+
+*Nota:* por favor use el protocolo/dialecto resaltado soportado por su cliente.
+
+.Pasos
+. Obtenga instrucciones de montaje para el volumen que ha creado haciendo clic en el signo de interrogación azul (?) Al final del campo Export paths junto al nombre del volumen.
++
+Cuando pasa el ratón sobre el signo de interrogación, aparece *Mostrar instrucciones de montaje*.
+
++
+image:diagram_mount_1.png["Muestra las instrucciones de montaje"]
+
+. Haga clic en el signo de interrogación para que aparezcan las instrucciones de montaje.
++
+*ejemplo de NFS:*
+
++
+image:diagram_mount_instructions_nfs.png["Instrucciones de montaje para NFS"]
+
++
+El tamaño máximo de I/o definido por la `rsize` y.. `wsize` options es 1048576, sin embargo 65536 es el valor predeterminado recomendado para la mayoría de los casos de uso.
+
++
+Tenga en cuenta que los clientes de Linux tendrán como valor predeterminado NFSv4.1 a menos que se especifique la versión.
+
++
+*ejemplo SMB:*
+
++
+image:diagram_mount_instructions_smb.png["Instrucciones de montaje para SMB"]
+
+. Conéctese a su instancia de Amazon Elastic Compute Cloud (EC2) mediante un cliente SSH o RDP y, a continuación, siga las instrucciones de montaje de su instancia.
++
+Después de completar los pasos de las instrucciones de montaje, debe haber montado correctamente el volumen de cloud en la instancia de AWS.
+
+

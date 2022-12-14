@@ -1,0 +1,320 @@
+---
+sidebar: sidebar 
+permalink: aws/reference_cloud_volume_apis.html 
+keywords: Cloud Volumes Service for AWS, APIs 
+summary: Las funcionalidades de Cloud Volumes que están disponibles en la interfaz de usuario web también están disponibles mediante API RESTful. Las API le permiten crear y gestionar volúmenes de cloud y desarrollar scripts y herramientas de aprovisionamiento. 
+---
+= API de Cloud Volumes
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Las funcionalidades de Cloud Volumes que están disponibles en la interfaz de usuario web también están disponibles mediante API RESTful. Las API le permiten crear y gestionar volúmenes de cloud y desarrollar scripts y herramientas de aprovisionamiento.
+
+
+
+== Encontrar la URL de la API, la clave de API y la clave secreta
+
+Debe obtener la URL de API de Cloud Volumes, la clave de API y la clave Secret para ejecutar una llamada API.
+
+.Pasos
+. Haga clic en *acceso API* en la página de almacenamiento o en el menú desplegable bajo su nombre de usuario.
+. Registre la URL de la API de Cloud Volumes, la clave API y la clave Secret.
+
+
+link:media/test.conf["Archivo de muestra que muestra la URL de la API, la clave de API y la clave secreta de una cuenta"]
+
+
+
+== Una lista de las API disponibles
+
+La página de almacenamiento muestra las API disponibles que se pueden utilizar.
+
+.Pasos
+. Haga clic en *Documentación de API* en la página de almacenamiento.
++
+La página enumera las API disponibles.
+
+. Desplácese por la página para ver las API disponibles.
++
+Las API se enumeran por función, por ejemplo:
+
++
+** `volumes`
+** `mounttargets`
+** `storage`
+** `snapshots`
+
+
+. Para obtener detalles y ejemplos de cómo utilizar una llamada API, seleccione la función y haga clic en una de las siguientes acciones:
++
+** `GET`: lee
+** `POST`: crea
+** `PUT`: actualiza o modifica
+** `DELETE`: destruye
+
+
+
+
+
+
+== Usar las API de Cloud Volumes
+
+En esta sección se muestra cómo usar las API de Cloud Volumes. Los ejemplos utilizan curl desde un shell bash de Linux. Debe sustituirlo `<api_url>`, `<api_key>`, y. `<secret_key>` con los valores de los que ha grabado <<finding_urL_key_secretKey,Encontrar la URL de la API, la clave de API y la clave secreta>>.
+
+
+
+=== Sintaxis
+
+`*curl -s -H accept:application/json -H "Content-type: application/json" -H api-key:<api_key> -H secret-key:<secret_key> -X [GET,POST,PUT,DELETE] <api_url>/v2/<command>*`
+
+
+
+=== Ejemplos
+
+
+
+==== Mostrar volúmenes
+
+El siguiente ejemplo muestra información sobre todos los volúmenes:
+
+
+NOTE: Canalizar el comando a través de `jq` mejora el formato del `json` salida. Puede que tenga que instalar `jq` en el sistema.
+
+[source, json]
+----
+curl -s -H accept:application/json -H "Content-type: application/json" -H api-key:<api_key> -H secret-key:<secret_key> -X GET <api_url>/v2/Volumes | jq
+----
+link:media/list-cv.py["El script para incluir Cloud Volumes en una cuenta"]
+
+
+
+==== En la lista de los detalles de un volumen específico
+
+Cada volumen tiene un ID llamado `volumeId`, por ejemplo, `07c9ab6c-b655-a9fe-f904-b9b97ef9baaa`. Si se incluye el ID de la llamada de API, se proporcionan detalles sobre el volumen específico:
+
+[source, json]
+----
+curl -s -H accept:application/json -H "Content-type: application/json" -H api-key:<api_key> -H secret-key:<secret_key> -X GET <api_url>/v2/Volumes/<volumeId> | jq
+----
+
+
+==== Creación de un volumen
+
+En el ejemplo siguiente se utiliza un `POST` llamar para crear un volumen llamado `Test`, en la región `us-west-1`, con un `allocated capacity` De 100 GB y exportado mediante `nfsv3`:
+
+[source, json]
+----
+curl -s -H accept:application/json -H "Content-type: application/json" -H api-key:<api_key> -H secret-key:<secret_key> -X POST <api_url>/v2/Volumes -d '
+{
+	"name": "Test",
+	"creationToken": "grahams-test-volume3",
+	"region": "us-west-1",
+	"serviceLevel": "standard",
+	"quotaInBytes": 100000000000,
+	"exportPolicy": {"rules": [{"ruleIndex": 1,"allowedClients": "0.0.0.0/0","unixReadOnly": false,"unixReadWrite": true,"cifs": false,"nfsv3": true,"nfsv4": false}]},
+	"protocolTypes": ["NFSv3"],
+	"labels": ["test"]
+}'
+----
+link:media/create-cv.py["Guión para crear un volumen de cloud"]
+
+
+
+==== Actualizar un volumen
+
+En el ejemplo siguiente se utiliza un `PUT` llamada para actualizar un volumen llamado `Test`, cambie el nivel de servicio a `extreme`Y cambie la capacidad asignada a 600 GB:
+
+[source, json]
+----
+curl -s -H accept:application/json -H "Content-type: application/json" -H api-key:<api_key> -H secret-key:<secret_key> -X PUT <api_url>/v2/Volumes/<volumeId> -d '
+{
+	"serviceLevel": "extreme",
+	"quotaInBytes": 600000000000
+}'
+----
+link:media/update-cv.py["Guión para actualizar un volumen de cloud"]
+
+
+
+==== Eliminación de un volumen
+
+En el ejemplo siguiente se utiliza un `DELETE` llamar para eliminar un volumen especificado por `volumeId`:
+
+[source, json]
+----
+curl -s -H accept:application/json -H "Content-type: application/json" -H api-key:<api_key> -H secret-key:<secret_key> -X DELETE <api_url>/v2/Volumes/<volumeId>
+----
+link:media/delete-cv.py["Script para eliminar un volumen de nube por punto de montaje"]
+
+
+IMPORTANT: Use con precaución. Esta llamada a la API elimina el volumen y todos sus datos.
+
+
+
+==== Crear una copia de Snapshot
+
+En el ejemplo siguiente se utiliza un `POST` llamar para crear una instantánea llamada `snappy` para un volumen específico:
+
+[source, json]
+----
+curl -s -H accept:application/json -H "Content-type: application/json" -H api-key:<api_key> -H secret-key:<secret_key> -X POST <api_url>/v2/Volumes/<volumeId>/Snapshots -d '
+{
+	"name": "<snapshot-name>"
+}'
+----
+link:media/snap-cv.py["Script para crear snapshots de un volumen de cloud por punto de montaje"]
+
+
+
+==== Crear una política de Snapshot
+
+En el ejemplo siguiente se utiliza un `PUT` llamar para crear políticas snapshot para un volumen específico:
+
+[source, json]
+----
+curl -s -H accept:application/json -H "Content-type: application/json" -H api-key:<api_key> -H secret-key:<secret_key> -X PUT <api_url>/v2/Volumes/<volumeId> -d '
+{
+	"snapshotPolicy": {
+        "dailySchedule": {},
+        "enabled": true,
+        "hourlySchedule": {
+            "minute": 33,
+            "snapshotsToKeep": 24
+        },
+        "monthlySchedule": {},
+        "weeklySchedule": {}
+    }
+}'
+----
+link:media/snapshot-policy.py["Script para crear políticas Snapshot para un volumen de cloud por punto de montaje"]
+
+
+
+==== La lista de copias de Snapshot de un volumen específico
+
+En el ejemplo siguiente se utiliza un `GET` llamar para mostrar las instantáneas de un volumen específico:
+
+[source, json]
+----
+curl -s -H accept:application/json -H "Content-type: application/json" -H api-key:<api_key> -H secret-key:<secret_key> -X GET <api_url>/v2/Volumes/<volumeId>/Snapshots
+----
+link:media/get-snaps.py["Script para enumerar las copias Snapshot de un volumen en nube por punto de montaje"]
+
+
+
+==== Revertir una Snapshot
+
+En el ejemplo siguiente se utiliza un `POST` llamar para revertir un volumen a partir de una snapshot especificada por `snapshotId` y.. `volumeId`:
+
+[source, json]
+----
+curl -s -H accept:application/json -H "Content-type: application/json" -H api-key:<api_key> -H secret-key:<secret_key> -X POST <api_url>/v2/Volumes/<volumeId>/Revert -d '
+{
+	"snapshotId": "<snapshotId>"
+}'
+----
+link:media/revert-snap.py["Script para revertir a una snapshot de un volumen de cloud por punto de montaje y snapshotId"]
+
+
+IMPORTANT: Use con precaución. Esta llamada a API provoca la pérdida de todos los datos escritos después de la fecha de esa snapshot.
+
+
+
+==== Creación de un volumen nuevo a partir de una copia de Snapshot
+
+En el ejemplo siguiente se utiliza un `POST` llame a para crear un nuevo volumen según una snapshot de un volumen existente, especificado por `snapshotId`:
+
+[source, json]
+----
+curl -s -H accept:application/json -H "Content-type: application/json" -H api-key:<api_key> -H secret-key:<secret_key> -X POST <api_url>/v2/Volumes -d '
+{
+	"snapshotId": "<snapshotId>",
+	"name": "Copy",
+	"creationToken": "perfectly-copied-volume",
+	"region": "us-west-1",
+	"serviceLevel": "extreme",
+	"protocolTypes": ["NFSv3"]
+}'
+----
+link:media/copy-cv.py["Guión para copiar un volumen de cloud"]
+
+
+
+==== Eliminar una copia de Snapshot
+
+En el ejemplo siguiente se utiliza un `DELETE` llamar para eliminar una instantánea especificada por `snapshotId`:
+
+[source, json]
+----
+curl -s -H accept:application/json -H "Content-type: application/json" -H api-key:<api_key> -H secret-key:<secret_key> -X DELETE <api_url>/v2/Volumes/<volumeId>/Snapshots/<snapshotId>
+----
+link:media/delete-snap.py["Script para eliminar una snapshot de un volumen de cloud por punto de montaje y snapshotId"]
+
+
+IMPORTANT: Use con precaución. Esta llamada API elimina la snapshot y todos sus datos.
+
+
+
+==== Unirse a un servicio de directorio
+
+En el ejemplo siguiente se utiliza un `POST` Llame para unirse a un servicio de directorio y proporciona la dirección IP DNS, el dominio, el nombre NetBIOS del servidor SMB, el nombre de usuario y la contraseña de un administrador del servicio de directorio y la unidad organizativa (opcional y predeterminada es CN=Computers).
+
+[source, json]
+----
+curl -s -H accept:application/json -H "Content-type: application/json" -H api-key:<api_key> -H secret-key:<secret_key> -X POST <api_url>/v2/Storage/ActiveDirectory -d '
+{
+	"DNS": "<ip-address>",
+	"domain": "<domain>",
+	"netBIOS": "<netbios-name>",
+	"organizationalUnit": "OU=Cloud Servers,DC=nas-cloud,DC=local",
+	"password": "secret",
+	"region": "us-west-1",
+	"username": "Administrator"
+}'
+----
+link:media/join-ad.py["Script para unirse a un servicio de directorio"]
+
+
+
+==== Visualización de integración de servicio de directorio
+
+En el ejemplo siguiente se utiliza un `GET` llame para mostrar la configuración de la integración del servicio de directorio.
+
+[source, json]
+----
+curl -s -H accept:application/json -H "Content-type: application/json" -H api-key:<api_key> -H secret-key:<secret_key> -X GET <api_url>/v2/Storage/ActiveDirectory
+----
+link:media/get-ad.py["Script para ver la integración del servicio de directorio"]
+
+
+
+==== Desensamblar un servicio de directorio
+
+En el ejemplo siguiente se utiliza un `DELETE` llame para desunirse a la integración de un servicio de directorio. Esto requiere el UUID para la unión actual, que se puede encontrar mediante el `GET` llamada indicada anteriormente.
+
+
+NOTE: No puede desunirse a un servicio de directorio que está en uso; estado "en uso".
+
+[source, json]
+----
+curl -s -H accept:application/json -H "Content-type: application/json" -H api-key:<api_key> -H secret-key:<secret_key> -X DELETE <api_url>/v2/Storage/ActiveDirectory/<UUID>
+----
+link:media/unjoin-ad.py["Script para desunirse a un servicio de directorio"]
+
+
+
+==== Obtenga estadísticas de rendimiento
+
+En el ejemplo siguiente se utiliza un `GET` Call para mostrar las estadísticas de IOPS de lectura y escritura, rendimiento y latencia durante un periodo específico para un volumen especificado por `volumeId`.
+
+[source, json]
+----
+curl -s -H accept:application/json -H "Content-type: application/json" -H api-key:<api_key> -H secret-key:<secret_key> -X GET '<api_url>/v2/Volumes/<volumeId>/PerformanceMetrics?startDate=2021-02-05T09:00&endDate=2021-02-05T09:05&type=READ_IOPS,WRITE_IOPS,TOTAL_THROUGHPUT,AVERAGE_OTHER_LATENCY'
+----
+link:media/get-perfstats.py["Script para obtener estadísticas de rendimiento de un volumen de cloud por punto de montaje"]

@@ -1,0 +1,31 @@
+---
+sidebar: sidebar 
+permalink: aws/task_disabling_snapshot_policy.html 
+keywords: Cloud Volumes Service for AWS, snapshot policies 
+summary: Si desea detener la creación de snapshots durante un breve período de tiempo sin perder la configuración de la política de Snapshot, puede deshabilitar la política de Snapshot. 
+---
+= Deshabilitar una política de Snapshot
+:toc: macro
+:hardbreaks:
+:allow-uri-read: 
+:toc: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+[role="lead"]
+Puede deshabilitar una política de Snapshot para detener la creación de copias Snapshot durante un breve período de tiempo mientras se conserva la configuración de la política de Snapshot.
+
+.Pasos
+. En la página Volumes, haga clic en el nombre del volumen y, a continuación, seleccione *Snapshot policy*.
+. Haga clic en el botón *habilitado* para seleccionar *DESACTIVADO* para desactivar la creación de instantáneas.
++
+image:diagram_snapshot_policy_button.png["Botón Habilitar política de snapshot"]
+
+. Haga clic en *Guardar cambios*.
+
+
+Cuando desee volver a activar la directiva de instantáneas, haga clic en el botón *Activado* a *ACTIVADO* y haga clic en *Guardar cambios*.

@@ -1,0 +1,29 @@
+---
+sidebar: sidebar 
+permalink: aws/task_reverting_volume_to_snapshot.html 
+keywords: Cloud Volumes Service for AWS, snapshots, restore, revert 
+summary: Es posible revertir un volumen a un momento específico anterior desde una snapshot existente. 
+---
+= Revertir un volumen desde una copia de Snapshot
+:toc: macro
+:hardbreaks:
+:allow-uri-read: 
+:toc: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+[role="lead"]
+Es posible revertir un volumen a un momento específico anterior desde una snapshot existente.
+
+Si se revierte un volumen, el contenido de la copia Snapshot sobrescribe la configuración de volumen existente. Se pierden todos los cambios que se realizaron en los datos del volumen después de la creación de la copia de Snapshot.
+
+Tenga en cuenta que los clientes no necesitan volver a montar el volumen después de la operación de reversión.
+
+.Pasos
+. En la página Snapshots o en la ficha Snapshots de los detalles del volumen, seleccione la instantánea a la que desea volver, haga clic en *disponible* y, a continuación, seleccione *revertir volumen a instantánea*.
+. En el cuadro de diálogo revertir instantánea, vuelva a introducir el nombre del volumen que desea revertir y haga clic en *revertir*.
+

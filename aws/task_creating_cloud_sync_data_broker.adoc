@@ -1,0 +1,79 @@
+---
+sidebar: sidebar 
+permalink: aws/task_creating_cloud_sync_data_broker.html 
+keywords: Cloud Volumes Service for AWS, Cloud Sync, data brokers, sync relationships 
+summary: Cloud Sync de NetApp se integra con Cloud Volumes Service para AWS de NetApp con el fin de permitir una sincronización de datos rápida con o desde un volumen de cloud. Un agente de datos de Cloud Sync le permite crear una relación de Cloud Sync para sincronizar datos. 
+---
+= Creación de un agente de datos de Cloud Sync
+:toc: macro
+:hardbreaks:
+:allow-uri-read: 
+:toc: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+[role="lead"]
+Cloud Sync de NetApp se integra con Cloud Volumes Service para AWS de NetApp con el fin de permitir una sincronización rápida de datos mediante NFS hacia o desde un volumen de cloud. Un agente de datos de Cloud Sync le permite crear una relación de Cloud Sync para sincronizar datos.
+
+.Acerca de esta tarea
+Si ya tiene un agente de datos de Cloud Sync en el mismo cloud privado virtual (VPC) de AWS que usa para su cuenta de Cloud Volumes, puede omitir esta tarea.
+
+https://docs.netapp.com/us-en/cloudsync/["Documentación de Cloud Sync de NetApp"^]
+
+.Pasos
+. Vaya a la página Sync o a la pestaña Sync para un volumen en la página Volumes.
+. Cree un Data broker haciendo clic en *Crear data broker*.
+. Proporcione información para los siguientes campos:
++
+** *Nombre*
++
+Proporcione un nombre para el agente de datos.
+
+** *Tipo*
++
+Seleccione AWS.
+
+** *Región*
++
+Seleccione una región disponible.
+
+** *Clave API*
++
+Proporcione la clave de acceso de su cuenta de AWS.
+
+** *Clave secreta*
++
+Proporcione la clave secreta de su cuenta de AWS.
+
+** *Keypair*
++
+Seleccione un tipo de teclados disponible.
+
++
+El keyair se actualizará después de introducir claves válidas.
+
+** *VPC*
++
+Seleccione el VPC que está conectado a la cuenta de Cloud Volumes.
+
+** *Subred*
++
+Seleccione una subred disponible que se utilizará para el agente de datos.
+
++
+image::diagram_creating_cloud_sync_data_broker.png[Creación de un agente de datos de Cloud Sync]
+
+
+
+. Haga clic en *Crear agente de datos* para iniciar el proceso de creación de Data broker.
++
+Se tarda unos minutos en crear un agente de datos. Una vez creado el Data broker, se Marca con un punto verde para indicar que está listo.
+
+
+
+.Después de terminar
+Continúe con link:task_creating_cloud_sync_relationship.html["Creación de una relación de Cloud Sync"].

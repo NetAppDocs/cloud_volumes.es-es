@@ -1,0 +1,24 @@
+---
+sidebar: sidebar 
+permalink: aws/concept_overview.html 
+keywords: Cloud Volumes Service for AWS, overview, concepts, features, use cases, prerequisites, workflow 
+summary: Cloud Volumes es fácil de usar y rápido de poner en marcha. Algunos requisitos previos son aplicables al usar Cloud Volumes Service para AWS. 
+---
+= Requisitos previos de Cloud Volumes Service para AWS
+:toc: macro
+:hardbreaks:
+:allow-uri-read: 
+:toc: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+[role="lead"]
+Cloud Volumes es fácil de usar y rápido de poner en marcha. Algunos requisitos previos son aplicables al usar Cloud Volumes Service para AWS.
+
+Debe haberse suscrito a Cloud Volumes Service para AWS antes de poder realizar las tareas de Cloud Volumes que se describen en esta documentación. El proceso de suscripción incluye la configuración inicial necesaria para utilizar el servicio.
+
+Consulte https://www.netapp.com/us/forms/campaign/register-for-netapp-cloud-volumes-for-aws.aspx?hsCtaTracking=4f67614a-8c97-4c15-bd01-afa38bd31696%7C5e536b53-9371-4ce1-8e38-efda436e592e["Eche un vistazo a Cloud Volumes Service de NetApp para AWS"^] para obtener más información.

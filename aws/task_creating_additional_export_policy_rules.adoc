@@ -1,0 +1,32 @@
+---
+sidebar: sidebar 
+permalink: aws/task_creating_additional_export_policy_rules.html 
+keywords: Cloud Volumes Service for AWS, export policy rules, clients, IP range, access 
+summary: Puede crear reglas adicionales de la política de exportación para permitir un acceso flexible a los clientes. Por ejemplo, es posible especificar que un rango de IP determinado tenga solo acceso de solo lectura a un volumen. 
+---
+= Creación de reglas de política de exportación adicionales
+:toc: macro
+:hardbreaks:
+:allow-uri-read: 
+:toc: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+[role="lead"]
+Puede crear reglas adicionales de la política de exportación para permitir un acceso flexible a los clientes. Por ejemplo, es posible especificar que un rango de IP determinado tenga solo acceso de solo lectura a un volumen.
+
+.Pasos
+. Haga clic en el nombre del volumen y, a continuación, seleccione *Política de exportación*.
+. Haga clic en *+ Agregar regla de política de exportación*.
+. Establezca valores para los siguientes campos:
++
+** *Cliente permitido*
+** *Tipo de acceso*
+
+
+. Haga clic en *Guardar cambios*.
+

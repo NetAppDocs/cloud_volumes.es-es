@@ -1,0 +1,29 @@
+---
+sidebar: sidebar 
+permalink: aws/task_deleting_export_policy_rules.html 
+keywords: Cloud Volumes Service for AWS, export policy rules 
+summary: Puede eliminar las reglas de política de exportación que ya no sean necesarias. 
+---
+= Eliminación de reglas de política de exportación
+:toc: macro
+:hardbreaks:
+:allow-uri-read: 
+:toc: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+[role="lead"]
+Puede eliminar las reglas de política de exportación que ya no sean necesarias.
+
+.Pasos
+. Haga clic en el nombre del volumen y, a continuación, seleccione *Política de exportación*.
+. Haga clic en *X* para la regla de directiva que desea eliminar.
++
+image:diagram_export_policy_delete.png["Eliminar una política de exportación"]
+
+. Haga clic en *Guardar cambios*.
+

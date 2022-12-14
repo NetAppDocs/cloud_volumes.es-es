@@ -1,0 +1,32 @@
+---
+sidebar: sidebar 
+permalink: aws/task_quick_start.html 
+summary: Puede empezar a utilizar Cloud Volumes Service para AWS realizando unos pasos rápidos. 
+---
+= Instrucciones de inicio rápido
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:keywords: cloud volumes, amazon web services, AWS, documentation, help
+
+
+[role="lead"]
+Puede empezar a utilizar Cloud Volumes Service para AWS realizando unos pasos rápidos.
+
+
+NOTE: Debe haber configurado los componentes de red de AWS necesarios antes de crear un volumen de cloud. Consulte la Guía de configuración_ de la cuenta de _Cloud Volumes Service de NetApp para AWS link:media/cvs_aws_account_setup.pdf["[ES"^]]|link:media/cvs_aws_account_setup_jaJP.pdf["[JA"^]] si aún no ha completado estos pasos.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["Uno"] Seleccione la región
+[role="quick-margin-para"]
+link:task_selecting_region.html["Especifique la región de AWS"] donde planea crear volúmenes de cloud.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["Dos"] Cree el volumen de cloud
+[role="quick-margin-para"]
+link:task_creating_cloud_volumes_for_aws.html["Cree el volumen de cloud"] En el cloud de AWS especificando el tamaño y el nivel de servicio, y defina otras opciones.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["Tres"] Monte el volumen de cloud
+[role="quick-margin-para"]
+link:task_mounting_cloud_volumes_for_aws.html["Monte el volumen de cloud"] A la instancia de AWS mediante NFS para clientes de Linux y UNIX, o SMB para clientes de Windows.

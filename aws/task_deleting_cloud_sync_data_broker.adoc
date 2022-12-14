@@ -1,0 +1,36 @@
+---
+sidebar: sidebar 
+permalink: aws/task_deleting_cloud_sync_data_broker.html 
+keywords: Cloud Volumes Service for AWS, Cloud Sync, data brokers 
+summary: Puede eliminar un agente de datos de Cloud Sync que ya no sea necesario. 
+---
+= Eliminar un agente de datos Cloud Sync
+:toc: macro
+:hardbreaks:
+:allow-uri-read: 
+:toc: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+[role="lead"]
+Puede eliminar un agente de datos de Cloud Sync que ya no sea necesario.
+
+.Acerca de esta tarea
+Esta tarea elimina el agente de datos de los volúmenes de cloud, pero no elimina la instancia de Data Broker en AWS.
+
+Para eliminar la instancia de Data Broker en AWS, debe ir a la consola AWS de su cuenta, localizar la instancia EC2 del agente por nombre y terminarla según sea necesario.
+
+.Antes de empezar
+Todas las relaciones de Cloud Sync que usan el agente de datos deben haberse eliminado antes de poder eliminar el agente de datos.
+
+link:task_deleting_cloud_sync_relationship.html["Eliminar una relación de Cloud Sync"]
+
+.Pasos
+. Vaya a la página Sync o a la pestaña Sync para un volumen en la página Volumes.
+. Elimine un agente de datos haciendo clic en el nombre del agente de datos y haciendo clic en el icono de la papelera.
+. Escriba, en el cuadro de diálogo de confirmación `delete` Para confirmar y, a continuación, haga clic en *Eliminar*.
+

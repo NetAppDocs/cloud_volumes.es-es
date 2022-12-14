@@ -1,0 +1,38 @@
+---
+sidebar: sidebar 
+permalink: aws/reference_known_issues.html 
+keywords: Cloud Volumes Service for AWS limitations and known issues 
+summary: En Cloud Volumes Service para AWS, existen las siguientes limitaciones y problemas conocidos. 
+---
+= Problemas y limitaciones conocidos
+:toc: macro
+:hardbreaks:
+:allow-uri-read: 
+:toc: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+[role="lead"]
+En Cloud Volumes Service para AWS, existen las siguientes limitaciones y problemas conocidos.
+
+* *Número*: Si un volumen existente solo admite NFSv3 y se crea o convierte un volumen con NFSv4.1 o admite NFSv3 y NFSv4.1, es posible que el volumen existente no se pueda montar sin especificar la versión NFS (vers=3).
++
+*Workaround*: Agregue la opción para especificar la versión NFS al comando Mount, por ejemplo, `mount -o vers=3 ...` O garantizar que todos los volúmenes se conviertan para ser compatibles con NFSv4.1. Tenga en cuenta que los clientes de Linux tendrán como valor predeterminado NFSv4.1 a menos que se especifique la versión.
+
+* *Issue*: Puede fallar la creación de un nuevo volumen a partir de una instantánea con el mensaje "no se puede establecer el atributo de volumen "archivos" para el volumen _<volume>_ …​ CAUSE: El nuevo recuento debe ser mayor que el recuento asignado actual de _<number>_".
++
+*Solución alternativa*: Este problema ocurre al intentar crear un volumen a partir de una instantánea que actualmente tiene más archivos asignados que el nuevo volumen asignado para su capacidad asignada. Debe aumentar la capacidad asignada del nuevo volumen a fin de asignar suficientes archivos (inodos). Consulte link:reference_selecting_service_level_and_quota.html#allocated-capacity["Seleccione la capacidad asignada"] para obtener más detalles.
+
+* *Issue*: Las interfaces virtuales de red se eliminarán automáticamente en regiones CVS que no tienen volúmenes después de 72 horas. Al crear un volumen nuevo, deberá volver a proporcionar la cuenta # y CIDR de AWS.
++
+* Solución *: Para evitar que las interfaces virtuales de red se eliminen durante periodos de inactividad, deje al menos un volumen y reduzca el nivel de asignación y servicio para minimizar el coste.
+
+* *Issue*: Los usuarios con suscripciones caducadas no pueden iniciar sesión en la interfaz de usuario de Cloud Volumes Service ni interactuar con la API.
++
+*Solución*: Vaya a la página de AWS Marketplace de Cloud Volumes Service y renueve su suscripción.
+
+
